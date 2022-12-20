@@ -1,7 +1,9 @@
 package com.example.grocerydeliverysystem.service;
 
 import com.example.grocerydeliverysystem.model.Product;
+import com.example.grocerydeliverysystem.repositories.OrderProductRepo;
 import com.example.grocerydeliverysystem.repositories.ProductRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +14,12 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class ProductService {
     @Autowired
     ProductRepo productRepo;
+    @Autowired
+    OrderProductRepo orderProductRepo;
 
     public List<Product> getListOfProduct(){
         return productRepo.findAll();
@@ -24,7 +29,7 @@ public class ProductService {
         productRepo.save(product);
     }
 
-    public Product updateProduct(int id, Product product){
+    public Product updateProduct(long id, Product product){
         Optional<Product> retrieveProduct = productRepo.findById(id);
         if (retrieveProduct.isPresent()){
             retrieveProduct.get().setName(product.getName());
@@ -37,8 +42,14 @@ public class ProductService {
         }
     }
 
-    public void deleteProduct(int id){
-        productRepo.deleteById(id);
+    public void deleteProduct(long id){
+        Optional<Product> retrievedProduct = productRepo.findById(id);
+        if (retrievedProduct.isPresent()){
+//            orderProductRepo.deleteByProductID(retrievedProduct.get());
+            productRepo.deleteById(id);
+        }
+
+
     }
 
     public Product getProductByName(String name){

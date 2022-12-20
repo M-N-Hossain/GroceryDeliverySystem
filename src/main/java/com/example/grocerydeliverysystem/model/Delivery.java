@@ -22,9 +22,8 @@ public class Delivery {
     @NonNull
     private String destination;
 
-//    @OneToMany(mappedBy = "delivery")
-//    private List<ProductOrder> productOrders;
-
+//    @OneToMany(cascade = CascadeType.ALL)
+//    private List<OrderProduct> orderProducts;
     public Delivery() {
     }
 }

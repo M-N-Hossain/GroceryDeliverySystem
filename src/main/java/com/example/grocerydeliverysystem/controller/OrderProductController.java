@@ -13,6 +13,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/orderProduct")
+@CrossOrigin(origins = "http://localhost:63342")
 public class OrderProductController {
     @Autowired
     OrderProductService orderProductService;

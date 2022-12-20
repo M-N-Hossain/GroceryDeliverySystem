@@ -15,6 +15,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/delivery")
+@CrossOrigin(origins = "http://localhost:63342")
 public class DeliveryController {
     @Autowired
     DeliveryService deliveryService;

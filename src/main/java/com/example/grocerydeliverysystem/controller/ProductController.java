@@ -13,6 +13,7 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/product")
+@CrossOrigin(origins = "http://localhost:63342")
 public class ProductController {
     @Autowired
     ProductService productService;
@@ -29,7 +30,7 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable int id, @RequestBody Product product){
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product){
         try {
             productService.updateProduct(id,product);
             return new ResponseEntity<>(product, HttpStatus.OK);
@@ -39,7 +40,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Product> deleteProduct(@PathVariable int id){
+    public ResponseEntity<Product> deleteProduct(@PathVariable long id){
         try {
             productService.deleteProduct(id);
             return new ResponseEntity<>(HttpStatus.OK);

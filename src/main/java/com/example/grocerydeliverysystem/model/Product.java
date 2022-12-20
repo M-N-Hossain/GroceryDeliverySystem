@@ -1,5 +1,6 @@
 package com.example.grocerydeliverysystem.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,26 +10,22 @@ import java.util.List;
 @Setter
 @Getter
 @ToString
+@AllArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     @NonNull
     private String name;
     @NonNull
-    private double price;
-    @NonNull
     private double weight;
+    @NonNull
+    private double price;
 
-//    @OneToMany(mappedBy = "product")
-//    private List<ProductOrder> productOrders;
 
-    public Product(int id, @NonNull String name, @NonNull double price, @NonNull double weight) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.weight = weight;
-    }
+//    @OneToMany(cascade = CascadeType.ALL)
+//    private List<OrderProduct> orderProducts;
+
 
     public Product(){}
 
