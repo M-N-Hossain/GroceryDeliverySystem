@@ -32,8 +32,8 @@ public class OrderProductService {
         if (retrieveOrderProduct.isPresent()){
             retrieveOrderProduct.get().setQuantity(productOrder.getQuantity());
             retrieveOrderProduct.get().setTotalPrice(productOrder.getTotalPrice());
-//            retrieveOrderProduct.get().setProductID(productOrder.getProductID());
-//            retrieveOrderProduct.get().setDeliveryID(productOrder.getDeliveryID());
+            retrieveOrderProduct.get().setProductID(productOrder.getProductID());
+            retrieveOrderProduct.get().setDeliverID(productOrder.getDeliverID());
             return orderProductRepo.save(retrieveOrderProduct.get());
         }
         else {

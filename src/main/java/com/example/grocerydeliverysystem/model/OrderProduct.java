@@ -24,10 +24,11 @@ public class OrderProduct {
     private long quantity;
     @NonNull
     private long totalPrice;
+    @NonNull
+    private long productID;
+    @NonNull
+    private long deliverID;
 
-    public OrderProduct() {
-
-    }
 
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @Nullable
@@ -38,5 +39,9 @@ public class OrderProduct {
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @Nullable
 //    private Delivery deliveryID;
+
+    public OrderProduct() {
+
+    }
 
 }
