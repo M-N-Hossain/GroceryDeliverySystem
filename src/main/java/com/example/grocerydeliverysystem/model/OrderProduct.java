@@ -1,47 +1,66 @@
 package com.example.grocerydeliverysystem.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.action.internal.OrphanRemovalAction;
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+
 
 @Entity
 @Setter
 @Getter
 @ToString
-@AllArgsConstructor
-@JsonDeserialize(as = OrderProduct.class)
+@NoArgsConstructor
 public class OrderProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @NonNull
-    private long quantity;
+    private double quantity;
     @NonNull
-    private long totalPrice;
+    private double totalPrice;
     @NonNull
-    private long productID;
-    @NonNull
-    private long deliverID;
+    private double totalWeight;
 
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @Nullable
-//    private Product productID;
+//    @NonNull
+//    private long productID;
+//    @NonNull
+//    private long deliverID;
 
 
-    //
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @Nullable
-//    private Delivery deliveryID;
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @Nullable
+    private Product productID;
 
-    public OrderProduct() {
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @JoinColumn(name = "delivery_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @Nullable
+    private DeliveryInfo deliveryInfoID;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+//    @JoinColumn(name = "delivery_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
+    @Nullable
+    private Van vanID;
+
+
+
+    public OrderProduct(long id, @NonNull long quantity, @NonNull long totalPrice, @NonNull long totalWeight, Product productID, DeliveryInfo deliveryInfoID, Van vanID) {
+        this.id = id;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+        this.totalWeight = totalWeight;
+        this.productID = productID;
+        this.deliveryInfoID = deliveryInfoID;
+        this.vanID = vanID;
     }
-
 }

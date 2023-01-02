@@ -18,8 +18,6 @@ import java.util.Optional;
 public class ProductService {
     @Autowired
     ProductRepo productRepo;
-    @Autowired
-    OrderProductRepo orderProductRepo;
 
     public List<Product> getListOfProduct(){
         return productRepo.findAll();

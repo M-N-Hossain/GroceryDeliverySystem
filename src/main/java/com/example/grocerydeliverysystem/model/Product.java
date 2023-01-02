@@ -23,7 +23,8 @@ public class Product {
     private double price;
 
 
-//    @OneToMany(cascade = CascadeType.ALL)
+//    @OneToMany()
+//    @JoinColumn(name = "product_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
 //    private List<OrderProduct> orderProducts;
 
 

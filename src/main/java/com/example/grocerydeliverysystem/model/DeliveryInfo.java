@@ -4,14 +4,13 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
 @Setter
 @Getter
 @AllArgsConstructor
 @ToString
-public class Delivery {
+public class DeliveryInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -22,8 +21,9 @@ public class Delivery {
     @NonNull
     private String destination;
 
-//    @OneToMany(cascade = CascadeType.ALL)
+//    @OneToMany()
+//    @JoinColumn(name = "deliver_id", foreignKey = @ForeignKey(ConstraintMode.NO_CONSTRAINT))
 //    private List<OrderProduct> orderProducts;
-    public Delivery() {
+    public DeliveryInfo() {
     }
 }
