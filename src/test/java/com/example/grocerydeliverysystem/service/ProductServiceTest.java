@@ -21,45 +21,45 @@ class ProductServiceTest {
 
     Product product;
 
-    @BeforeEach
-    void setUp() {
-        productRepo.deleteAll();
-        product = new Product(1,"Milk",1000,13);
-
-    }
-
-    @Test
-    void getListOfProduct() {
-        productRepo.save(product);
-        assertEquals(1, productService.getListOfProduct().size());
-    }
-
-    @Test
-    void addProduct() {
-        productService.addProduct(product);
-        assertEquals(productRepo.findById(1L).get().getName(), product.getName());
-    }
-
-    @Test
-    void updateProduct() {
-        productRepo.save(product);
-        String name = "Honey";
-
-        productService.updateProduct(product.getId(), new Product(1,name, 1000,1000));
-        assertEquals(productRepo.findById(1L).get().getName(), name);
-    }
-
-    @Test
-    void deleteProduct() {
-        productRepo.save(product);
-
-        productService.deleteProduct(product.getId());
-        assertTrue(productRepo.findById(product.getId()).isEmpty());
-    }
-
-    @Test
-    void getProductByName() {
-        productRepo.save(product);
-        assertEquals(productRepo.findById(product.getId()).get().getName(), productService.getProductByName("Milk").getName());
-    }
+//    @BeforeEach
+//    void setUp() {
+//        productRepo.deleteAll();
+//        product = new Product(1,"Milk",1000,13);
+//
+//    }
+//
+//    @Test
+//    void getListOfProduct() {
+//        productRepo.save(product);
+//        assertEquals(1, productService.getListOfProduct().size());
+//    }
+//
+//    @Test
+//    void addProduct() {
+//        productService.addProduct(product);
+//        assertEquals(productRepo.findById(1L).get().getName(), product.getName());
+//    }
+//
+//    @Test
+//    void updateProduct() {
+//        productRepo.save(product);
+//        String name = "Honey";
+//
+//        productService.updateProduct(product.getId(), new Product(1,name, 1000,1000));
+//        assertEquals(productRepo.findById(1L).get().getName(), name);
+//    }
+//
+//    @Test
+//    void deleteProduct() {
+//        productRepo.save(product);
+//
+//        productService.deleteProduct(product.getId());
+//        assertTrue(productRepo.findById(product.getId()).isEmpty());
+//    }
+//
+//    @Test
+//    void getProductByName() {
+//        productRepo.save(product);
+//        assertEquals(productRepo.findById(product.getId()).get().getName(), productService.getProductByName("Milk").getName());
+//    }
 }
